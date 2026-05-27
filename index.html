@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>써니스살롱 2026 S/S Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FAF7F2;--warm:#FFFDF9;--charcoal:#2C2825;--gray:#7A7470;--light:#E8E4DF;--accent:#C8A882;--dark:#A07850}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;background:#F0ECE6;color:var(--charcoal)}
+.index-page{padding:60px 40px}
+.idx-header{text-align:center;margin-bottom:56px;padding:60px 20px 40px}
+.idx-header .brand-en{font-size:.72rem;letter-spacing:.35em;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+.idx-header h1{font-family:'Noto Serif KR',serif;font-size:3rem;font-weight:700;letter-spacing:.04em;margin-bottom:14px;color:var(--charcoal)}
+.idx-header .season{font-size:.78rem;letter-spacing:.22em;color:var(--gray);text-transform:uppercase;margin-bottom:0}
+.idx-header .divider{width:40px;height:1px;background:var(--accent);margin:16px auto}
+.trader-section{max-width:1100px;margin:0 auto 52px}
+.trader-title{font-family:'Noto Serif KR',serif;font-size:1rem;font-weight:600;color:var(--dark);letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--accent);padding-bottom:8px;margin-bottom:20px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.product-card{background:var(--warm);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .25s;border:1.5px solid transparent}
+.product-card:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(200,168,130,.2);transform:translateY(-3px)}
+.card-thumb{aspect-ratio:3/4;background:var(--cream);overflow:hidden;position:relative}
+.card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-card:hover .card-thumb img{transform:scale(1.06)}
+.card-thumb .no-img{display:flex;align-items:center;justify-content:center;height:100%;color:var(--accent);font-size:.75rem;flex-direction:column;gap:8px;opacity:.5}
+.card-body{padding:14px 14px 16px}
+.card-id{font-size:.7rem;color:var(--gray);letter-spacing:.07em;margin-bottom:4px}
+.card-name{font-family:'Noto Serif KR',serif;font-size:.88rem;font-weight:600;color:var(--charcoal);margin-bottom:4px;line-height:1.4}
+.card-color{font-size:.77rem;color:var(--gray);margin-bottom:8px}
+.card-price{font-size:.9rem;font-weight:700;color:var(--dark)}
+.card-cat{display:inline-block;font-size:.68rem;padding:3px 8px;background:var(--light);border-radius:20px;color:var(--gray);margin-top:6px}
+.detail-page{display:none;min-height:100vh;background:var(--warm)}
+.detail-page.active{display:block}
+.top-bar{background:var(--charcoal);color:white;padding:14px 40px;display:flex;align-items:center;gap:16px}
+.back-btn{font-size:.8rem;color:var(--accent);cursor:pointer;border:1px solid var(--accent);padding:5px 14px;border-radius:4px;transition:all .2s;white-space:nowrap}
+.back-btn:hover{background:var(--accent);color:white}
+.breadcrumb{font-size:.78rem;color:rgba(255,255,255,.45);letter-spacing:.04em}
+.detail-wrap{max-width:980px;margin:0 auto;padding:56px 40px 100px}
+.detail-top{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:64px}
+.gallery{display:flex;flex-direction:column;gap:10px}
+.gallery-main{border-radius:14px;overflow:hidden;background:var(--cream);aspect-ratio:3/4;position:relative}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+.gallery-main .placeholder{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:12px;color:var(--accent);opacity:.4}
+.gallery-thumbs{display:flex;gap:8px;flex-wrap:wrap}
+.gallery-thumbs img{width:60px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all .2s;opacity:.7}
+.gallery-thumbs img.active,.gallery-thumbs img:hover{border-color:var(--accent);opacity:1}
+.gdrive-link{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--accent);text-decoration:none;margin-top:8px;padding:6px 12px;border:1px solid var(--accent);border-radius:20px;transition:all .2s}
+.gdrive-link:hover{background:var(--accent);color:white}
+.detail-info{padding-top:8px;display:flex;flex-direction:column}
+.d-trader{font-size:.73rem;letter-spacing:.14em;color:var(--dark);text-transform:uppercase;margin-bottom:8px}
+.d-name{font-family:'Noto Serif KR',serif;font-size:1.9rem;font-weight:700;line-height:1.3;color:var(--charcoal);margin-bottom:4px}
+.d-id{font-size:.78rem;color:var(--gray);margin-bottom:18px}
+.d-price{font-size:1.7rem;font-weight:700;color:var(--charcoal);margin-bottom:22px;letter-spacing:-.02em}
+.d-desc{font-size:.88rem;line-height:1.9;color:var(--gray);margin-bottom:24px;padding:18px;background:var(--cream);border-radius:10px;border-left:3px solid var(--accent)}
+.color-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1.5px solid var(--light);border-radius:8px;font-size:.83rem;margin-bottom:22px}
+.cdot{width:13px;height:13px;border-radius:50%;border:1.5px solid var(--light)}
+.section{margin-bottom:46px}
+.sec-title{font-family:'Noto Serif KR',serif;font-size:.97rem;font-weight:600;color:var(--charcoal);letter-spacing:.07em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--light)}
+.mat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mat-card{background:var(--cream);border-radius:10px;padding:16px;text-align:center}
+.mat-label{font-size:.68rem;color:var(--gray);letter-spacing:.1em;margin-bottom:6px}
+.mat-value{font-size:.86rem;font-weight:600;color:var(--charcoal);line-height:1.5}
+.size-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.size-table th{background:var(--charcoal);color:white;padding:11px 14px;text-align:center;font-weight:500;font-size:.78rem}
+.size-table td{padding:11px 14px;text-align:center;border-bottom:1px solid var(--light);color:var(--charcoal)}
+.size-table tr:nth-child(even) td{background:var(--cream)}
+.size-table td:first-child{font-weight:700;color:var(--dark)}
+.wear-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.wear-item{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--cream);border-radius:8px;font-size:.86rem}
+.wi-lbl{color:var(--gray)}
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:.73rem;font-weight:600}
+.b-yes{background:#E8F5E9;color:#388E3C}
+.b-no{background:#FAFAFA;color:#999}
+.b-some{background:#FFF8E1;color:#F57C00}
+.model-bar{background:var(--charcoal);color:white;border-radius:10px;padding:18px 24px;display:flex;gap:32px;flex-wrap:wrap}
+.ms{text-align:center}
+.ms-lbl{font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.1em;margin-bottom:3px}
+.ms-val{font-size:1rem;font-weight:700;color:var(--accent)}
+.notice-box{background:linear-gradient(135deg,#FFF8F0,#FAF0E8);border:1px solid var(--accent);border-radius:10px;padding:18px 22px}
+.notice-box p{font-size:.82rem;color:var(--gray);line-height:1.9;padding-left:1em;text-indent:-1em}
+.notice-box p::before{content:'• ';color:var(--accent)}
+.det-nav{display:flex;justify-content:space-between;margin-top:56px;padding-top:28px;border-top:1px solid var(--light)}
+.nav-btn{display:flex;align-items:center;gap:8px;padding:11px 18px;border:1.5px solid var(--light);border-radius:8px;cursor:pointer;transition:all .2s;background:white;font-size:.83rem;color:var(--charcoal)}
+.nav-btn:hover{border-color:var(--accent);background:var(--cream)}
+.nav-btn.disabled{opacity:.3;pointer-events:none}
+@media(max-width:700px){.detail-top{grid-template-columns:1fr;gap:28px}.mat-grid{grid-template-columns:1fr 1fr}.wear-grid{grid-template-columns:1fr}.index-page{padding:36px 18px}.detail-wrap{padding:36px 18px 80px}.top-bar{padding:12px 18px}.idx-header h1{font-size:1.9rem}}
+</style>
+</head>
+<body>
+<div class="index-page" id="index-page">
+  <div class="idx-header">
+    <div class="brand-en">Sunny's Salon</div>
+    <h1>써니스살롱</h1>
+    <div class="divider"></div>
+    <div class="season">2026 S/S Collection</div>
+  </div>
+  <div id="index-content"></div>
+</div>
+<div id="detail-pages"></div>
+<script>
+const imgMap = {
+  "S505": ["13cfli-keTpPMNm-106avMlbJvaFMHiQm", "1pky98KwQQLIJqYV2a9ZsOrjJdNmyuLLE", "1_SQlQ-WtTa2zd_4o48U65U2-MBLaKWgU", "1ZWCsBwSBg_oOBj0LMuIiAP6wv6iU0kJp", "1I8pgRsmVTyHw9VK7nLYhE9DLTZqu43il", "1cCmV_sGUYunAKxD8zvuDMH531DIcabPv", "18Iqb_TMkQLrEEAw90lsrlOJGkMirz3NS", "17SMJXKyUb3ibCs-O0BJogW4C0I0E1qfd"],
+  "S506": ["1eFARTgpgXXd7IhtAtlmjfryxgFvCN65S", "1k83-MLCtvXJnuxwctFIL6RX9POjmfED9", "1NR8aHpcXeeuf0O0gcjZadsnNzbRDi2OE", "1BtWBCIyUcNEb5juN_hQZmPcnjVsCPphd", "1qXvhV4bhcLV-x6Nl91K12nkYi4PZkHPP", "1RCe7rihellQ9bqTm6nqCVhENTDxf-sas", "1PNFzdCjj-7KND4u1ESegLQxk3Zr4q-8o", "19n7Dl-gFSMfKhT6QIjJqYeaQTOJ8lJGe"],
+  "S507": ["180absHH2Oc83ynXVV7nDQ_HhRIfs2ZQ-", "1WtgdiMRF1H6jCt7DcvWnjRPGocLftzvr", "1_SuL811PCJYBjwyyjif3tjbyHvjlraxz", "1FMDGfpUSGhqDPUfn8-xTW28rQCFpqeAE", "1ePXppVWnjqU8NAI3rPvrbJMQVQIXToYG", "1MVhOdX6-9Kyx1-8Daapv_AZHZKue4EAn", "1ubx3Nl0i87zp5gTT5nmfAHlWXx6Z-6pu", "1tsoXpFBEfdD0xjCBzYgw6MWfLpY6Wq3l"],
+  "S508": ["1ZxTEleZPAl77xE_08JGoLqyrWz08hcht", "1fGCvD9ONN3CkP1T7yUCSzISXu_BW-DAC", "1YDlFT0EZeA_kz3tZDMO_jyccIPf0KJQl", "1oE2LxkUS8c4zwsNjRVw1N7x7teU_PV8P", "1XH-WSRmUS8cFOsahAAVP-ZXjH2nKBSMx", "180_uCFdQT4fdm1yUZoA_z7LSrCbM3aSe", "1xZu2pHIaJ8SyiwKmQ2VH8P0jBUSZ4LAd", "1bGlSTxFpsleCCHGB_zLiI-4sxYlQbrN7"],
+  "S405": ["1RL0_01V_0X2Ia6lNeQdj8mBy7xZCGk1e", "1ky3WMNoGmUAV8_pnrVzowfhv-f9KNrkD", "1TxdWOZojx5uPflXEup3Nw0Admb-7MKvi", "1yz2FPZAPyQcvhr3WzrydeaGdk_lU0h6-", "1El6jH8zxaOQw0iFeM8rVZxJUsFN9EJ40", "10I2QgT69pdfy0OPYpY0X-5RkKPX9qNjK", "1XpO21M46ZM3M68TZHLIXJdpOwvCfJpiy", "15pC-OaWoo3E37OfYX4QvI72ns9n2q6qH"],
+  "S406": ["10bxVUUKqa_48L4ZhBpHVHvqPynYKwVB9", "12X7kXlbUFkyf_YbpPpgnP9K9W6uLmayv", "17A1xb8OyN2n8RKzBjfAkJGAXzYffyAW4", "1I-nzNMSDpYcsHblPzGx9J9r24vGJGV7Q", "1xjpIIl5WK3c6oHuaG9gktUJV3SbqVekF", "1uRrR5gfeq_vP2hsDAGl5oy5glYl0q5hc", "1xLC8rFQAcbq2GeM3Xl57P1ER_nFu_5mQ", "1cA_OOHp7Omhz1iXrZTKpwoVaPj0LLtLT"],
+  "S472": ["1MCl1tPrDbr5j0lZLfDZSgGr8WgxisbKW", "1k9d1aZSbn6QsH1ZgK_7T88shjeRRCDXk", "1IRw7b2o_JdKuCbs47sbZdmhp_MuXhRfH", "1lCsDnjMMWH6ruwdjDluWdxGvuxh7kgdJ", "17Xgm_dUN3wE-_rSFu5aZvkSdzApoCAzv", "11fhTNbKESNEL8f90s_ymdg0SNy7O_q1w", "18tuNgSxnDap7yPvWiI8P9_Qwo8PjofeB", "1Gy4wTlJC3Ye1x4HairrIOIz-JFVnz3YQ"],
+  "S473": ["1q3Y6eu_Iniy1lAmw3Yi8bgZA_qwx1K2j", "143PHr6O6qc_ZlMKlbpDHfSXm0LgGu3XO", "1WlO5LqsbeJpPI0yQ7iCVOCb0jNv-UvSM", "1OLV7oJ5vXAa3koZKURo_dmN_lhPFwq8k", "1VfoqY2RRl4mFO_Mc82-qBimeAFCOcS7T", "1u5qc3K-pwg9ICEE1agCdZCqOlQYbt-p9", "10sSID2801Q0pz385zOaUrNDH88Fg56YD", "1yO_4Jsu8lAFUM8fUtyxkHhnhdrkQJxvG"],
+  "S474": ["19w-4XkwotBGb1Q8_de4qnoFWAssGoW92", "1SnnAh4MpPUc2V6FICdcop42LvXt6JE1X", "1pWnHvKL1tw52E2p7pfwgDLRj2Ie9l8E-", "1834-LgDboylzOkTg-33jHVYbkxaMO5B8", "1J51StWPm0csTHhmakIg88BTij2IsKdLR", "1Z0X_RrbXl4Es_UfSDOVxHfWDlv78iC6G", "18s-HgfnTz48KKWHSHvdiEmoVSdKkzRAL", "1PecLAWyXRGjh7VAKPwMREFM5haBPDz76"],
+  "S509": ["1wYq88FMZHaK9tt_GupmyzEZe5OY46p8j", "1fSKBaEyOX5EZ9SmP2GvIDyZNkX97s9AU", "1YiijSxmt5DhUGin-uSrZi3hThN4B4moN", "1zXTD8W86B9c2fHS3mMtEgASCWdOfXpiN", "1p1AeOdlNmpkg7cYkp5VDRaDU2xx8yZZl", "1Qb91PjcNKXdsVFkHsJTBcVTSELBCQEe0", "1vzD4iF3DdEuF6gv-mEJH3tsDbaVbKg1R", "1tY6whIT4t2soCeZee1qEjNUjHg3tTaki"],
+  "S510": ["1VVlNjHjE-vSObb2AgI9ct01GbAsjsGVU", "1eAIw5H3R4kLgx3GkZSGXgBELopm-bt6-", "11vQkp2hAIjdzWQrRjHU0KBW8qe5ekdfW", "1ODDsX6feRnZAO984pbVKJg4OhbB7M5W3", "1YMGybNLKxay8vRAwudHHex8mDIZruYH9", "1a_cOmTyMnP7wCTxodWaq6h_EIO6uPyQO", "1Mb_ONcru8hdKEvM7VvOjeZJyVdBezOLl", "1F62lYXv6eJX0rKKHqMH2EEFE3cgkwLGl"],
+  "S511": ["1dwmkIZiMJvDJadN2ldrfd_9J9ZUpH-Y2", "1-1Bdn9T8tZ_bBU4326UP7GRu6HkTI-eK", "1iqt0O74du_4aWtT9-9zIDnGRl5AzWQE_", "1LLZdy8idQYkAmjem5uPP5CaIGBwbO97b", "1EOZkmOXCtsnpPgeqDByBh17LlcHFmy-Y", "1wnUyt45G-a_Kf-VZ_HphF7L-u2DQ1Pf8", "1xJg6HQ92Mw6G2vUflMLXNtWdSPPStivr", "1fTYUT3BlJYd2Q_DSCv7I9xdttOtWRKZp"],
+  "S512": ["127P3q46Ene6GcdDemG22ZaecWSZJOVUe", "1tjsFfBcEeFb68nKD8J1v4cQlUql6j_5s", "1jgDc2kBtjFvdJwzB3jog8zVDVe53VCYs", "15pyuLPf2u6RT2myTfOvyVmQSzFDGt0Xi", "1nMlAd-oXi0QIP7oahhq9iUAgQEO8sYdD", "1nfVgi1We1i4KGDD59xzVduvtOWeXlwgS", "1QmgSQRRpNBXP7_-pC9XmuTOB-S6Hf6d-", "1OjT6fs2mYb-LQl4Dbrvw5Yxd_pBnF9KZ"],
+  "S513": ["15piw2G67wo2QLj5nQY-l5bFGHkPmKqq6", "1Jfj9eydl7kNhvaPOyeUXqgrcO-7UJt_y", "1zQXleTQMZMKWBogqBU_wi5UWgDvrSRum", "1K4FO8PhunOF6SFY4WPLnyLyFCeA9DD4Q", "1QZKIiYKU85qoiMXeDKfWnEJs3FWhhzSS", "1P519P0uAvJLR4JNhrGYe7WHQA98EoYvr", "1xamnKV-6F_AXBiygcDoLp1IrkFmHgQL6", "1MuRKIQ3uumJ65meKhE0LEYfQ2Gl7o6eT"],
+  "글램OPS": ["16ZF3k3-spchnVD2TV0PuCelQ2GKP8of_", "1BitG2v49UuGQXt9qZN4_aMSh2MzO0zTt", "1Y81_PcT7vooLaoYZ2IsptjJTcwl0qxR3", "1ds5vbk3Za8rMrlSAICvo3_xh3GLBTQnK", "11o9NVBswSM2LB1hDxoPl3o7mWeLxzRRK", "1SgqYtPtyae5wg0MMf4ss0gzeWGBHgt2_", "1BQ5F5qTMBShjhlqjJGSOGzZ5ukFd6AyF", "1g5xPev6K46FMHZoCiqqci4RY0Oz80jFj"],
+  "기네스OPS 블랙": ["1R9YWaAc-ZJBAak8cl4MYMwVvVGC0Zajx", "1k3ynp5T8uoSeEXF30_2YUrJiZ3Iq-tKm", "1ko9_fhZTM3DFcLyIIswfREsanHgf5f18", "1rLZP6pkQ8CLRHQVmFFgsYG6JpWcUgMjG", "1lS_imknKFHJedxynGBbmmTK7HXD016a1", "1qDEkmW_q4LPOaM0vqtA44mHez7qSl_Gl", "18jRu1iCCcOazxs45-yv160fys0M7GtCH", "1gsj8p-CA0-yFygVwUCgllQLW8g_gOBGN"],
+  "기네스OPS 아이": ["1wcNr7pG8J0Yvv2sWNNEJq8R1I46tdK8D", "1yvZGGZ4mdBGGAVuW_x9k1YSOQ8JuHxT3", "1hX4ZTLqpg2g8lI_tff9xJMOuvzTqQSzc", "16AfEdtxDI8IYAyIRqerftzZpbZwPEQX1", "13y1wfJuT4SuOSKEuxRIbIcVZylC0WXTs", "1XK5UEZ1SVYr2Wvkvp-OgD5740f-bvwKY", "1glQs-fEzihOfjEWhT9oLb999QI2T7VcF", "13r068SvzSqQL-Jw2sXN01jIbcfqC8-Md"],
+  "라비앙OPS": ["1HljA_K146MbL5OMLNGwGcApQOmAcuOqK", "1h2Dcq0hpfRQLn9DsMttfExyRUo-ecBvI", "1M7U457Yrt66fnM6yPPW07bCT-73iBfDP", "1xdH_0sOYXnE84RBKegd2lwNKJLn2Crvz", "1cm1JEqos7qGFkaf04uoUItVGyXXYoRGb", "1yn6UpNocCM1tEkIRcqytsL1-d8UjaQDT", "1gfbpO0hMg32i-aWSW9T2cHdSWdHhoF5g", "1bdcfM_ZqIdlxbEAnTyxuBKxDm4Gw2k0C"],
+  "리본끈 탑원피스(그레이)": ["1s9582k-l1EpJ-GSDOZVqt1laq1eWOjxU", "110PMo5NFSbEvF2ehsjPqOOTspFGvgAmk", "1GKwJ1v8cSd1_UBQVo5PYqQrDbny3c0dl", "1FB0BHKJdUXPJSKa_fprrqRA7sGjTxB2R", "17xjNlmUAAYqL5EKfwC4LVHAVpGF9Ctv7", "1idlnkZztBvLFqSYdMm_bgDVahIesK3LQ", "1MUEKk6wgbBKXwOPNTSSfuEFOMCuipavH", "10eDT14AgeRlmUXwUrcACqqbQuapXmNqV"],
+  "S470": ["1-QDXDgZwA9kCv_17J9bLJGX6XZM8ImND", "11xVN9OgMD32mRt8coQowSibLXB1d3c3o", "1L9vMU5qrvc5pb66N7tXs9fFFw6rwNBop", "1USYNDyLZHZaMnS_u_0l4i4-80HunHM0D", "1TweBZWmpVgUl5HJ1pzd4aGhQc6AKM1ke", "1J-Wl_HVlNileCFLnW06vsSvAIhSDxaGO", "1jQwRqPJBhUV8IFs26fA_2gFXr9POw9K_", "17uUtpGz-Y2RJB288zo9LF579EMJ6OQYU"],
+  "S471": ["17CBg5g2JIj_LwvhbKX1cIjZnZgX3i7H9", "1ubInujx2UcxQxkqmOB1hwt7XgvVMObjc", "19zEtjyuPwm-gMqXH9JF7E14QR7_Nj1X8", "1UgZmRuBCs5V7aQzF4XhI5iuWE5JYQOEY", "1YFIHxmzcZkYemGn3KjMOq061Iy-f3Z43", "1MaNWYRYVLDFXP3w0hoDfjEgI3sc6c48i", "17sM6EYOu7ivxs0YMertB_OoG8DxedcaH", "1BqVTrWxvk1yyM3cOO3HXGDuXJyAwYmaQ"],
+  "S468": ["1P6jhaZgp1A_-J9HcKWrFj2fc-c-DugzZ", "1vSngAaV9oDRrBlGzFzx84Ymzv-zLGtdL", "1iotNw_I8xuQUJb2PXWDAZfw72KbPK8Vy", "1ZEdWjVi4s-65eSQmkErMrzoLIioIduHN", "1cDCigVArd3mhx3vHFIjDRo0M_syQftYQ", "1WLkd8HP0wyunx2fHcDa3JxDWduwHMEj0", "16emqAf5n-gAHBHRcNAhQEzHsNHkHtXwf", "1JfKW9mbdpIS4YOu8yHO9Sqovz8pRsk9V"],
+  "S469": ["1YitFdIRz2IwxrXoOF-QqhZHhbX2F2K90", "1EzLrU1Iyi63Vo-iDIf59KCrchkWKw8TZ", "1RGNcIDp_fxeqKndr4cDC1nRTxpbMK9bF", "1mCn-qR9JPSjrKIBJ6dAdtorQycdJp84E", "1n5RgNlbmrk2Y4OkocrJNTkhuCUPwjEAd", "1lIIvQOG-ziROVRTPD73flS1FPwq-1Ig9", "1MvUefMkBv5J3M4Dmfq2vBu12BiQmlIZJ", "1xrx9M4GdZkEtBOZpvJipq1b_NfHfGN8Y"],
+  "S466": ["1DmsOO1_56ykly52qIyo9L8ZhpJ78uuWP", "1VHa7nlSXq4p_dJkN29kLd5cb2DU8A8-Y", "1CofAoCBO5l7hdGWeXsidoZeCdKmHD005", "1ru8sf_4IZ87NG5J6bkcrjMeVITZbWPIk", "1cXz_4XnpBKmiCblS74p72ezzlZsPUta_", "1bm__vUwFT1vkuFqtkL12UxFGoiMhqbEZ", "1pxfBJUmmkLYJqL8cnl30wd59NL2plUb3", "1jZDwa4LRZQuaNGkT856SFcjHsoq6OpNG"],
+  "S467": ["1xYLS963JIHxk2NyPBtsmkvAAxZ2DizhY", "12RWgy2axMqYynO8JOmfJtf_kJgLnyw6t", "1tL68I_U2CF6xoliPvI6AXzPQrRNlO98U", "1KmGhBw44jCc-KACzxSgC3Svp7sW0XFXE", "1vNtFnVQrRS60VfagUWG5-xQzdFOJjNhJ", "1Jat_pyytc7dFfbGV_Et-O4yLEgRgLxwf", "1PR4AE62tBZCkXfCL1ZSUudFjyt2H_xtu", "1vk-uWz2X1VqiKLI8uFC3rVqdfgy6ySEl"],
+  "S390": ["1s2oYif1wklnS9kkmI3utL6tI1-caxDEF", "1SeDl_fgyLTz3EfLQO9qPEUhuwLk--YR8", "1k5UeDUunGr2AXU4h978U5bqwgtDZF3Mk", "13IF8ZxGA2w7_3kmcCpl3Mb55NF8F4qDf", "13lDQXjqx1n3srDNKzBDAj2VAbhlzEgHe", "1H5RCjb5etGfVx9gjiuriizIcKI3itzNR", "1Ih1wUH2cxk7ICuFxDVUWp0_NwpisC8QP", "17zAyEDyF_SQY74XKeiF_hT6NXbnYX5or"],
+  "S391": ["1ROULody9XE30TCHIhs753jVDAT-t6h7c", "14kfT80Bn604jU4zCy7E7glijFTXtMK_5", "1Jiqpq5wfqmUgyxraYES2_eZ8LipQF7HM", "1B6UJgzFwjJzhAYU1f-ALFM8beUDth4rv", "1SM41nUpN9jrfR5THSoVqhVxDGaOab47R", "1z5190ZK6UN3vVkPmUq14rjV1jPk2otuW", "1-VeGWPKq-hcBng8AkKqpW8ycH_QOSOdm", "18P0PB_46nuuq42i9VQIMyYafr6RnFSNU"],
+  "S392": ["1ny2BPIeRTn1oqRz0kuySUXDhKf7ZxRWw", "1DLcdNIhdl1ARvZz5OlIB1ICqkmgjmg_I", "1Jwm7GQKcO2FCgvwx6TsHExBxR-nzaFnN", "1Drc6V-UvtJ-gZIo5EkfdFJuaiJNSuWCN", "1VPBrHzywQkUyr43jDpfahR4iRIrrDYUu", "13230R197fx011lYRr5YLY3oNQPrX18vS", "1L3fLl8KmfSyCcq9db4xxDqxBSEpm0a9A", "1xt-noyxkZvba4OHZ14wX0vHo8fDBjLjQ"],
+  "S393": ["1QF---tivGlI3MPRbMhxScNXz1UO3RzB2", "1SN5Y1Amqm5aKgV02BQmr36jSVUZfwblJ", "1yh7kxEVb9hi6v1SnKl1pkbRhTycGd7w1", "150DOqS4XugobKw-kqef-20poS3gR6WQ0", "1FzrsSg5hMEwsVErLfhJUbBpoDTxUbXnB", "1QC0aGFEQGwF3U8Yyd4Hp49R-L_89C68U", "1OPMmHJoL4oaL9Vod3t_0kK1k_QDBfw1r", "1GDr1ZeHh-jDKyZvoLypI5rhD_LnRpYX3"],
+  "S394": ["14mIFynSTG84xCbBgZYayfD_TAGNNhjOD", "1my1nd7UGsiAvYbc7Z0yjtymTBFqAkumu", "1xuwRA-5tsvFAJV2LhrjnEo9lrePyLm_J", "1pOEpPxwbQLLVRxkZWShSyoL0BqCZbLTf", "15Hsrck69cTNVRLoTeRFfQWP9klAts2lq", "1BF-BXky4fl0AwmyRZ9xMH6yBDLmoVCDp", "1YMmFSpQ5v7sRqDBsx6IS-BQq17CXB_lt", "10RYgjF_rWGJx0sBErDqPErLITPB4XYFq"],
+  "S395": ["1ScqalMvc8SZ8fPLFrH54rD9HtA1dNhHY", "1D83qlu0PFCm3HEt8LYJ4BMnGelCcSIqL", "1NNAjJRCB-ZfOgJnMfLXc0Xw7ZDnXG2FV", "1YDKnde_HQSMto2j4a_Qe8p7rwWhVwdFu", "1hCzrU_IICXm2qI1jKHB4mD5a8f9xEh9J", "1qlbwVTjjZCpOofLeVfEvicCc7FSlxDYU", "14Bu-Dpu9Bu_I9XppBFgvI_8NDNlr8Geu", "1e0vndwPGLrU1KUqbQ9sXrigpIerieis5"],
+  "S475": ["1dXSaEtwaPfqVPYAs8_CVAMLLMShGD6O9", "1_mDZBMZxFS7fmzuGppTGWB0yXZyw6mrv", "156Zj0I3QkINrG_TQ9sZ8VHvcGG1eovAu", "15ftQ42hHFNKqVsYXgfE1U2bVv67f60KH", "1-Q_3NwbUNhNKJmIQO5wM0VZh27D6fIa-", "13mM9FRZUAkZijGYx56Y5ks9viCRYjDrP", "1QzpCNcmD17xQroDR3R_2QKuJdHuc2rKO", "1knNw5lbVqVZ05X5P9polf_TJGUt3cux_"],
+  "S476": ["1PL2bdgG98WMH_jioMsBPyt45pGCTiSNU", "1hXC5ozvm-hLa81Tbe4nhGjrGFKIEv-Tx", "1RJrpEhb5W5nmsEAkr8MraPiKda-1lQo-", "1Gaka7uFxirEbNNkzJfZ0JWdJhkDnSH4Q", "1jSsnftph9yWB4DFXOlydoVRc5H8uY7bc", "1NcDQajQPz0MSZT-Tw-fw8-pBqkIkwqHi", "1LX5JaU7RhrQFzl0rr2CPFNGGzd0S40-5", "13vALM4UQ7J7WtrzTJ1W_91NNl29sjdC5"],
+  "S477": ["1VL_GyH0MXdTJFngIuPpIwy0fZsx7_dQQ", "16w2z58I8pPY1EKDqtqu50q4vU8Fmn0-2", "1Jhp-1grusjDRajSEm8ALEpWBlK3ekYvw", "16b4WtxnZKVpqlIbZES2FRmfHR-7bDJjo", "1FY_82-POIC0dqv06GCWVHboMdoencBqe", "1M6VvrMTvlKlymHFw4s9P9YwaorJgN-5a", "1sGioI0pM_RxNmdVSl4ByHAooEcVZczcU", "1eTIOfkocMTJtYiZw9gg4pkBwM_GXT6nQ"],
+  "S478": ["1stigNSurumL_eNCcUXGFJ81f4vZrWNJu", "1Bhkr3r1aZl6VpYsMAJ_ZdtS0Eu5lZudB", "1isxXwB9MiQnSdhwuumKwIENEXTAESELl", "1AIdE1p6Xb7rPHJNeuyhP0k-ZOIZ77rlp", "16OjdS78L0_jBdNWR1xgrOsIusQ13BMJC", "1hJEK5332XjT1goJWOs6BZpgqPo2RPrkc", "1uP_FO3Zj5RaqdPGdbTbLiJv4KwgcZCRZ", "1sr_2IuLJK2njAbiYse9HKY0clwsvWTWS"],
+  "S514": ["1Go22iDCp7FW1cYEvUj_fwX_WhqGgAimC", "1te87M6TS-W92PUKmpMItvqUKZfLFG-KF", "1GtSzEqyUXkIydHCqX56jSHzI5wf_MZAY", "1k5mQdLuSrQLJGTiSQEoo0LHBkw2wO4As", "1wtEXBR4RKfMYOK7Z-FGfylNmVYY2NrYL", "1n4MOkKn6iSJMmKRiS4gyk4dRpk4E0ona", "1AJ53C4_ZhlNdXWXOp7Y6eFFL16vDQH4d", "1cTuK_AolvCYHoaJJh-y89J_78m7BZfXR"],
+  "S515": ["1Cck732NAyYDnS8Utx_jLbAcrTyOvTbg0", "1clLaz6Fa2S_pkjzQSm3oIFE3z3e_nYoR", "1CH_UQP7ygamT2aotAgLAkgLPyXvwCa92", "13_47DxngXqnBCsKpfSZYK04P-qtwMo9M", "1TMPmEKsULJYoyl7u3VG8nWu1SONGG7Ya", "1kiK32nb2hH7ErB0zZ7tyIxpu0P36zSLy", "1ItTy2-Qy6QxjbiozE4gMI5MhSBY_MCs9", "1w_Ry91Kc_cniYzRvdwbK4RSqzh8UZ5LI"],
+  "S516": ["1Buf-dWZOBwK7EoMIbNX2s4cKlLY6c-RD", "1x505S4stOHg2rp7ah2u-9yT6sf7NSFee", "1-i1Gf-5Fb-RddeD44iOHyI0ZQ1FmuUJV", "1Ca5RJmuf-wO_PaDK9Z5PhIMMNMOmtyjI", "1MeNIuZ28iXNiVuL2LPDZLnUttIsi698p", "1r3XW9z_iECbGejaIHWWU4Twdrm_JBYMQ", "16sy3WMMpLT9oFKrtJQm9XC9Add0damnr", "1bAVJlrcU_FbDGhcK9qc9OMIIHAdR3L8e"],
+  "S517": ["1tknui2KBvEj9eeLDms39q9qL8Xp-y9ib", "1znRP2gumcYL-j-RmWXvwdSxm5KXAsGVT", "1rVchNQaHrdOTi2p-Q9jdsCttUb2iL82d", "1rfDs_gnpjNE2HpSOCwvRdRcAATE75nEt", "1XVRW2QF77V_alAvkaswXg1Ym8gEmpV2a", "1UfKd473sZze1bdnM4c1W2jvj_VJu8lh_", "1JLM0JmBipnKjx0h3GMpNAN1NRKW7_RPM", "1subKLabWKbm5OsImcr16UwlPG17VGw_v"],
+  "S518": ["1_lH3-x57MNTXz77ILduXoiOn2UKQfgyg", "1RVA3C8ph6QNfc3e2XvVcw0r3Oj6NmUBs", "1dQA5krqFJMvUPyXSSOuwfeeL_V0P79Fm", "1P4wJIje7gX6v_S216goDxEYiT5UgMdW2", "1rDAV5yxW2LVNRz-hgWWfyEN97rLl7a4u", "1D_QrmSOzfAj_lAwWmFldpC28WZSFSGtn", "15TzXEz2KUkjCnAhH4ol-eP6LVmAoljeY", "1CSs0tYr1kijt2WFgP3O1N6xglNkV92__"],
+  "S519": ["15RLwZwF9lrqTFfRlSoT61MzOSFwEfCrk", "1OCuFnZoH3CJNfHI3xa9YCGX3t87T-35v", "15UAAU9hNDsw8RH2QevKZ_0lvQXkvl-pb", "1NOQsvWp_9TcKvM6R2D4ax936Y3NZsHNK", "1OX20RmVOVGtr7agqOh_RhQ4LqnsJv11r", "1Tqcuccf0czxjPNUe0GRnVPp1aCYsz2p1", "1vZ45p4vbUPRU6h24xtLc9jmJkqdOC7BA", "1CWpRjuBRWflucdKo8fco5fisGuHmo9lL"],
+  "골지 미니 원피스 핑크": ["1gwh34pftFR44xw1qE4u0liqxEiZ8EVWr", "1pCPMjXVF1vYE6qVrVs9PhvseDl3A3e-I", "1Pl2YRp4GwbzP0Vva72Ip04_0GglZRD4B", "1CzNiO2hH8NJSLCR3s01RPojegbB2yB1Y", "1qSb3jOb2wjNPjvLuO4AlNmUiQkG0YOTw", "1l4dxcAoT6iG_8Xe4Z0PD-TEZko4F_LnG", "13tAm4Wl7ObsFSEG3H6xSOOs7FM-PU5K1", "16t8EnYhNJJApjD4KAvcObxSTpdvG_GSN"],
+  "리본끈A라인원피스(coco)": ["1oNU76khIhjyqQTc6NsapdrzkyyHPNf6I", "14o2HkPLqMXlceFKA8AluQCLREic_6_8y", "1XCLTjFCj0kDygkn-W4FpTLOsdQnPE9wd", "1El5aaROeiG9i1U9yCS5r7O-T1fpHqeAk", "1gaXnQaWKV0EMpR35p8WOWjJhpNmRj7XP", "1oNPVRD5vIGz004QZ8B7OpOPanKAwho7h", "1EMABMorBCy-jbN1ZQArzVX9z0jCYIDcN", "1PV4XaLdWWrNsEoqJQaTebxI86dXpR9fI"],
+  "리본끈A라인원피스(노랑)": ["1PhCd_VEjThCCy3i7xUkpG4byoxKJrX0s", "1dr33kiCi2Zqg4AUo8M7S2iXtizdbXUDJ", "1jzvJNprPGVnKUCawfZ1yVj3eRHCsGON1", "1VMKlwn-8mxiFVIHRLMc592jlNjfuMQZa", "164Xn9lRQFh3m3VKylGEJnoSLMGiZP_ds", "1YiB7uWg7zjP-iNVjfZIhg3ovNO92LwVl", "1YVguNFqecjoRcPrQ-QOkWxDJFasc1lyU", "1-T7bkEUI3lzlL3Yiex6vGtlUxv0tlZ78"],
+  "S504": ["1IRcEv1ZDJXdWR8BjJ4Vc8mssqoAdPwvl", "1-n2oHC1VFaOhO6fRC8axYOFm_h8T8HwQ", "1Qeh2MU0i8PUNC5AZRhSOHPW81S72yum4", "1hQTsRLrCGqtOgeLIMSJ3UzpeGlrYkqjk", "1GP0atTmztsXdIG-bcINfdmAubtRIk3MF", "1BipsKY4e_wOm7jYUkiTDDHX1j46eD5HZ", "1autUzgyzssjLM3JkecGzvcdsdePzaMfJ", "1hNSb4ffclc9-JL1lBwYnFA65nkoq6Brf"],
+};
+
+function driveImg(id){return`https://lh3.googleusercontent.com/d/${id}`}
+function driveFolderUrl(id){return`https://drive.google.com/drive/folders/${id}`}
+function colorCSS(c){const m={'화이트':'#F5F5F0','블랙':'#2A2A2A','핑크':'#F4B8B8','네이비':'#2A3A5C','그레이':'#9E9E9E','베이지':'#D4B896','소라':'#8EC5D6','레드':'#C24B3A','블루':'#4A7CC4','다크민트':'#5A9E8A','브라운':'#8B6347','연보라':'#C5AADC','엘로우':'#F5D97A','아이보리':'#F5F0E0'};return m[(c||'').split('/')[0].trim()]||'#C8A882'}
+function badge(v,t='yn'){if(!v)return'<span class="badge b-no">-</span>';if(t==='s'){if(v==='있음')return'<span class="badge b-yes">있음</span>';if(v==='약간')return'<span class="badge b-some">약간</span>';if(v==='적음')return'<span class="badge b-no">적음</span>';}if(v==='있음')return'<span class="badge b-yes">있음</span>';if(v==='없음')return'<span class="badge b-no">없음</span>';return`<span class="badge b-no">${v}</span>`}
+function vv(x){return x||'-'}
+
+const products=[
+{no:3,trader:'그레이스',id:'S504',cat:'투피스',color:'화이트',desc:'러플 브이넥 크롭 투피스',price:'171,000',fabric:'쉬폰, 폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:31,h:41,l:76},m:{c:36,w:33.5,h:43.5,l:76},l:{c:37,w:36,h:46,l:76},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1VW5PW-gNK7wGK1Az5fktTAIobe7C7KGt'},
+{no:4,trader:'그레이스',id:'S505',cat:'투피스',color:'핑크',desc:'러플 브이넥 크롭 투피스',price:'171,000',fabric:'쉬폰, 폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:31,h:41,l:76},m:{c:36,w:33.5,h:43.5,l:76},l:{c:37,w:36,h:46,l:76},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1YH56c2IbDA-1PETarqI0JT-TJ2Q2h8YN'},
+{no:5,trader:'그레이스',id:'S506',cat:'원피스',color:'블랙',desc:'러플 브이넥 크롭 원피스',price:'171,000',fabric:'쉬폰, 폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:31,h:41,l:76},m:{c:36,w:33.5,h:43.5,l:76},l:{c:37,w:36,h:46,l:76},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1OSD_HVKqeJ7GEUzB4p9RtPgz2wtsRmCx'},
+{no:6,trader:'그레이스',id:'S507',cat:'투피스',color:'화이트',desc:'마린 스타일 투피스',price:'171,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'-',w:31,h:'-',l:'상:38/하:42'},m:{c:'-',w:33.5,h:'-',l:'상:38/하:42'},l:{c:'-',w:36,h:'-',l:'상:38/하:42'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'16hE5sZEnqrj2DlQvL8WCto1VwLvC8aku'},
+{no:7,trader:'그레이스',id:'S508',cat:'투피스',color:'네이비',desc:'마린 스타일 투피스',price:'171,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'-',w:31,h:'-',l:'상:38/하:42'},m:{c:'-',w:33.5,h:'-',l:'상:38/하:42'},l:{c:'-',w:36,h:'-',l:'상:38/하:42'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1txCkgRU4pvS1tIRB_0emkx_LXL8lxyJP'},
+{no:8,trader:'세윤',id:'S405',cat:'투피스',color:'상:핑크/하:화이트',desc:'러플 오프숄더 크롭 투피스',price:'156,000',fabric:'상:폴리스판/하:망사+폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'소매:11',l:'상:38/하:42'},m:{c:40.5,w:32.5,h:'소매:11',l:'상:38/하:42'},l:{c:43,w:35,h:'소매:11',l:'상:38/하:42'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1jJaGh3JviovnvHqOuVOJzFrCkcnn7kdO'},
+{no:9,trader:'세윤',id:'S406',cat:'투피스',color:'블랙',desc:'블랙 러플 투피스',price:'156,000',fabric:'상:폴리스판/하:망사+폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'소매:11',l:'상:38/하:42'},m:{c:40.5,w:32.5,h:'소매:11',l:'상:38/하:42'},l:{c:43,w:35,h:'소매:11',l:'상:38/하:42'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'15AKWcCx1ZdUgdrnBp7gGS-8Vuq0YffBC'},
+{no:10,trader:'세윤',id:'S472',cat:'투피스',color:'화이트/블랙',desc:'오프숄더 튤스커트 투피스',price:'156,000',fabric:'상:폴리스판/하:망사+폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'소매:11',l:'상:38/하:42'},m:{c:40.5,w:32.5,h:'소매:11',l:'상:38/하:42'},l:{c:43,w:35,h:'소매:11',l:'상:38/하:42'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1vWj3fvqBqiGFdpzxQ0GHKZLHDkkRAyP5'},
+{no:11,trader:'세윤',id:'S473',cat:'투피스',color:'화이트',desc:'마린 세일러 투피스',price:'161,000',fabric:'폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'소매:19',l:'상:37/하:38'},m:{c:40.5,w:32.5,h:'소매:19',l:'상:37/하:38'},l:{c:43,w:35,h:'소매:19',l:'상:37/하:38'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1dev4MRLb7KH8bgJTDdy_vFL5Tp3n6t4B'},
+{no:12,trader:'세윤',id:'S474',cat:'투피스',color:'블랙',desc:'블랙 마린 세일러 투피스',price:'161,000',fabric:'폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'소매:19',l:'상:37/하:38'},m:{c:40.5,w:32.5,h:'소매:19',l:'상:37/하:38'},l:{c:43,w:35,h:'소매:19',l:'상:37/하:38'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1A7o93L1pEE_H-_zgH3UprXodd2ZaX5vu'},
+{no:13,trader:'세윤',id:'S509',cat:'투피스',color:'상:화이트/하:블랙',desc:'오프숄더 랩스커트 투피스',price:'153,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:31,h:40,l:38},m:{c:36,w:33.5,h:42.5,l:38},l:{c:37,w:36,h:45,l:38},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'상:뒷지퍼/하:옆지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1CHqkvkMQuqazYd8qDDQi3XtckcfD99JR'},
+{no:14,trader:'세윤',id:'S510',cat:'투피스',color:'상:핑크/하:화이트',desc:'핑크 오프숄더 랩스커트 투피스',price:'153,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:31,h:41,l:38},m:{c:36,w:33.5,h:43.5,l:38},l:{c:37,w:36,h:46,l:38},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'상:뒷지퍼/하:옆지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1-lmVZSXK70MZ_N05AMr3f6axtX3zaBZ9'},
+{no:15,trader:'세윤',id:'S511',cat:'투피스',color:'상:블랙/하:화이트',desc:'블랙 오프숄더 랩스커트 투피스',price:'153,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:31,h:41,l:38},m:{c:36,w:33.5,h:43.5,l:38},l:{c:37,w:36,h:46,l:38},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'상:뒷지퍼/하:옆지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1ERnTu4rYCjcifj2pTf7l48qfkY-7lku6'},
+{no:16,trader:'세윤',id:'S512',cat:'미니드레스',color:'핑크',desc:'골드버튼 체인 슬림 원피스',price:'126,000',fabric:'폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:31,h:43,l:78},m:{c:41.5,w:33.5,h:45.5,l:78},l:{c:44,w:36,h:48,l:78},stretch:'보통',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1UkHCiGQtvpKZOvMhBvCcsIeDJjGjmkLC'},
+{no:17,trader:'세윤',id:'S513',cat:'미니드레스',color:'소라',desc:'골드버튼 체인 슬림 원피스',price:'126,000',fabric:'폴리에스터 90%, 스판덱스 10%',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:31,h:43,l:78},m:{c:41.5,w:33.5,h:45.5,l:78},l:{c:44,w:36,h:48,l:78},stretch:'보통',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'11dmXmXLAxMFE5ms_7VYXZ1vH9DgI0Z-L'},
+{no:18,trader:'실루엣',id:'글램OPS',cat:'미디드레스',color:'베이지/화이트',desc:'글램미디원피스',price:'117,000',fabric:'니트',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:35,w:27,h:37,l:110},m:{c:37.5,w:29.5,h:39.5,l:110},l:{c:40,w:32,h:42,l:110},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:47,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1CtaPH44lTC_xJL8oxbC9-oy_Cfv7LM5v'},
+{no:19,trader:'실루엣',id:'기네스OPS 블랙',cat:'미니드레스',color:'블랙',desc:'기네스미니원피스',price:'111,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:33,w:31,h:42,l:57},m:{c:35.5,w:33.5,h:44.5,l:57},l:{c:38,w:36,h:47,l:57},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:47,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1OMie6sP7XqzEGhqgd1Pfqyz3myPCCzhO'},
+{no:20,trader:'실루엣',id:'기네스OPS 아이',cat:'미니드레스',color:'화이트',desc:'기네스미니원피스',price:'111,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:33,w:31,h:42,l:57},m:{c:35.5,w:33.5,h:44.5,l:57},l:{c:38,w:36,h:47,l:57},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:47,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1j3NYq_gNjMzwmK9NCla8r1DB3Wb5uFvj'},
+{no:23,trader:'실루엣',id:'라비앙OPS',cat:'미디드레스',color:'아이보리/베이지',desc:'라비앙원피스',price:'135,000',fabric:'새틴',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:43,w:33,h:45,l:'81(소매:63)'},m:{c:45.5,w:35.5,h:48.5,l:'81(소매:63)'},l:{c:48,w:38,h:50,l:'81(소매:63)'},stretch:'적음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:47,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1I9stsZS4z6Tx2WcVMMPVICjF461yC4Yb'},
+{no:24,trader:'실루엣',id:'리본끈 탑원피스(그레이)',cat:'미니드레스',color:'그레이',desc:'튜브탑 넥라인이 입체감 있는 리본디테일, 몸매를 더 슬림해 보이는 스프라이트 패턴',price:'106,000',fabric:'폴리에스터 95%, 스판덱스 5%',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:33,w:31,h:42,l:57},m:{c:35.5,w:33.5,h:44.5,l:57},l:{c:38,w:36,h:47,l:57},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:164,w:44,c:55,wa:'26inch',hi:'',sz:'S'},folderId:'1Rx2Zi5lQ0AIR1vG011Zi7H7y0ZlP1phW'},
+{no:45,trader:'써니',id:'S470',cat:'미디드레스',color:'블랙',desc:'블랙 배색 미디 드레스',price:'135,000',fabric:'새틴',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:34,w:30,h:40,l:84},m:{c:36.5,w:32.5,h:42.5,l:84},l:{c:39,w:35,h:45,l:84},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:'',w:'',c:'',wa:'',hi:'',sz:''},folderId:'14KcETHfSqqQXJbScyMfYgfyGv5uAeB1E'},
+{no:46,trader:'써니',id:'S471',cat:'미디드레스',color:'핑크',desc:'핑크 배색 미디 드레스',price:'135,000',fabric:'새틴',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:34,w:30,h:40,l:84},m:{c:36.5,w:32.5,h:42.5,l:84},l:{c:39,w:35,h:45,l:84},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:'',w:'',c:'',wa:'',hi:'',sz:''},folderId:'17QuMuHOUngkuNbP8bF2M4bi0mS4wGpsF'},
+{no:47,trader:'예스',id:'S468',cat:'투피스',color:'베이지',desc:'베이지 도트 카라 투피스',price:'153,000',fabric:'폴리에스터 95%, 스판덱스 5%',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:'',w:'',c:'',wa:'',hi:'',sz:''},folderId:'1jUUf6qUppS0ISspJgRvdmCUpgFt_Erad'},
+{no:48,trader:'예스',id:'S469',cat:'투피스',color:'핑크',desc:'핑크 도트 카라 투피스',price:'153,000',fabric:'폴리에스터 95%, 스판덱스 5%',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:'',w:'',c:'',wa:'',hi:'',sz:''},folderId:'1mFH8ian_H5uug1izJAtOacKRYLODWjiT'},
+{no:49,trader:'임마누엘',id:'S466',cat:'롱드레스',color:'화이트',desc:'화이트 시스루 롱 드레스',price:'144,000',fabric:'폴리에스터 95%, 스판덱스 5%',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:'',w:'',c:'',wa:'',hi:'',sz:''},folderId:'1sAb2zGVbY3YsC6q0x3oxdLh6CjhAT5B5'},
+{no:50,trader:'임마누엘',id:'S467',cat:'롱드레스',color:'블랙',desc:'블랙 A라인 롱 드레스',price:'144,000',fabric:'폴리에스터 95%, 스판덱스 5%',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:'',w:'',c:'',wa:'',hi:'',sz:''},folderId:'1Bm754cUo57J6Av9u9-MNaUJwSzU2CBcE'},
+{no:51,trader:'지나',id:'S390',cat:'미디드레스',color:'화이트',desc:'화이트 H라인 미디드레스',price:'131,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:30,h:41,l:'100(소매:18)'},m:{c:41.5,w:32.5,h:43.5,l:'100(소매:18)'},l:{c:44,w:35,h:46,l:'100(소매:18)'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1sLiNoQTOJQdTtQ3o-S2R0rl8UwuHRurG'},
+{no:52,trader:'지나',id:'S391',cat:'미디드레스',color:'블랙',desc:'블랙 H라인 미디드레스',price:'131,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:30,h:41,l:'100(소매:18)'},m:{c:41.5,w:32.5,h:43.5,l:'100(소매:18)'},l:{c:44,w:35,h:46,l:'100(소매:18)'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:''},folderId:'1mssk8u9O-ls9vZlZ4vjB_F3FnfE5gFPJ'},
+{no:53,trader:'지나',id:'S392',cat:'미디드레스',color:'화이트',desc:'화이트 H라인 미디드레스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:31,h:41,l:103},m:{c:41.5,w:33.5,h:43.5,l:103},l:{c:44,w:36,h:46,l:103},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'19JLix0_dJY4E7DO_L3ILek7xFeSdoJol'},
+{no:54,trader:'지나',id:'S393',cat:'미니드레스',color:'소라',desc:'소라 H라인 미니드레스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:31,h:41,l:103},m:{c:41.5,w:33.5,h:43.5,l:103},l:{c:44,w:36,h:46,l:103},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'14poqpZc57JWEshTyoLhid-jwMZBM_QML'},
+{no:55,trader:'지나',id:'S394',cat:'미니드레스',color:'레드',desc:'레드꽃무늬 H라인 미디드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'17PwymqAKQYXtYyoZZqw95GOwFgEsRbYq'},
+{no:56,trader:'지나',id:'S395',cat:'미니드레스',color:'블루',desc:'블루꽃무늬 H라인 미디드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'19_2Q5Yj0bAi62ITmPWRPdcT3UqZogBoJ'},
+{no:57,trader:'지나',id:'S475',cat:'미니드레스',color:'화이트',desc:'미니탑 드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1GJjnHRFvB08MV1_SI7QIoMWevRZMnv9g'},
+{no:58,trader:'지나',id:'S476',cat:'미니드레스',color:'블랙',desc:'미니탑 드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1CKLK1bwRHo47hRXJDu28cS-6QyIWDL8u'},
+{no:59,trader:'지나',id:'S477',cat:'미니드레스',color:'다크민트',desc:'끈나시 주름치마드레스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:32,w:30,h:44,l:77},m:{c:34.5,w:32.5,h:46.5,l:77},l:{c:37,w:35,h:49,l:77},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1ykqbOZo7tg8th_DaFAkh9pcEVreCiSj3'},
+{no:60,trader:'지나',id:'S478',cat:'미니드레스',color:'블랙',desc:'끈나시 주름치마드레스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:32,w:30,h:44,l:77},m:{c:34.5,w:32.5,h:46.5,l:77},l:{c:37,w:35,h:49,l:77},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1V6GhzsuMBgVRdsE73QNBTv99WdH-00pq'},
+{no:61,trader:'지나',id:'S514',cat:'미니드레스',color:'화이트',desc:'어깨꽃 H라인미니드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1uAYfSNFN9m_skS6k_ji72VTI8uBWmo5B'},
+{no:62,trader:'지나',id:'S515',cat:'미니드레스',color:'블랙',desc:'어깨꽃 H라인미니드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'17g9ToxxhzwuuFDVzigM03fmWBw21_1eE'},
+{no:63,trader:'지나',id:'S516',cat:'미니드레스',color:'화이트',desc:'H라인 미니드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1r-weOVc065oxvNl6FunOBm1Rc0uQ2Rcx'},
+{no:64,trader:'지나',id:'S517',cat:'미니드레스',color:'핑크',desc:'H라인 미니드레스',price:'126,000',fabric:'',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:'',w:'',h:'',l:''},m:{c:'',w:'',h:'',l:''},l:{c:'',w:'',h:'',l:''},stretch:'',inner:'',see:'',thick:'',zipper:'',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1aIS8lc94l3BHOmYuBCg5aOJgOdvyjNyX'},
+{no:65,trader:'지나',id:'S518',cat:'미니드레스',color:'화이트',desc:'도트 미니 A라인원피스',price:'126,000',fabric:'폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'',l:78},m:{c:40.5,w:32.5,h:'',l:78},l:{c:43,w:35,h:'',l:78},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:165,w:48,c:34,wa:23,hi:35,sz:'S'},folderId:'1gwK8HvZo_KdKdkjGoLngzNydVqEtDzim'},
+{no:66,trader:'지나',id:'S519',cat:'미니드레스',color:'블랙',desc:'도트 미니 A라인원피스',price:'126,000',fabric:'폴리스판',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:30,h:'',l:78},m:{c:40.5,w:32.5,h:'',l:78},l:{c:43,w:35,h:'',l:78},stretch:'약간',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:167,w:50,c:35,wa:23,hi:36,sz:'S'},folderId:'1xw4l8bGnlocEwxVyvWC79SsJZaiz7BW-'},
+{no:67,trader:'지니',id:'6369(브라운)',cat:'미니드레스A',color:'브라운',desc:'V버클 플리츠 미니원피스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:38,w:31,h:43,l:77},m:{c:40.5,w:33.5,h:45.5,l:77},l:{c:43,w:36,h:48,l:77},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:164,w:49,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1RMdIIm4PBYxR5gZO72vCmw7YcyYWEpFK'},
+{no:68,trader:'지니',id:'골지 미니 원피스 핑크',cat:'미니드레스A',color:'핑크/화이트/블랙',desc:'진주 버튼 스퀘어넥 미니 원피스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:40,w:30,h:45,l:'80(소매:23)'},m:{c:42.5,w:32.5,h:47.5,l:'80(소매:23)'},l:{c:45,w:35,h:50,l:'80(소매:23)'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:164,w:49,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1XIBeKp372QUy4BLZq3zYOpiNToYKnqC0'},
+{no:69,trader:'지니',id:'리본끈A라인원피스(coco)',cat:'미니드레스A',color:'연보라',desc:'도트리본 타이 A라인 미니드레스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:30,h:'',l:'80(소매:23)'},m:{c:41.5,w:32.5,h:'',l:'80(소매:23)'},l:{c:44,w:35,h:'',l:'80(소매:23)'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:164,w:49,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1VamE3DO3gRYPzlJyZe0j1HzQJldHx2tq'},
+{no:70,trader:'지니',id:'리본끈A라인원피스(노랑)',cat:'미니드레스A',color:'엘로우',desc:'도트리본 타이 A라인 미니드레스',price:'126,000',fabric:'폴리혼방',lining:'폴리에스터 100%',wash:'손세탁 권장',s:{c:39,w:30,h:'',l:'80(소매:23)'},m:{c:41.5,w:32.5,h:'',l:'80(소매:23)'},l:{c:44,w:35,h:'',l:'80(소매:23)'},stretch:'있음',inner:'있음',see:'없음',thick:'보통',zipper:'뒷지퍼',model:{h:164,w:49,c:'',wa:'26inch',hi:'',sz:'S'},folderId:'1V0VkpTU6gAIfAPH0dxIRtBzwloxSaKxA'},
+];
+
+function getImgs(p){return imgMap[p.id]||[]}
+
+function renderIndex(){
+  const traders={};
+  products.forEach(p=>{if(!traders[p.trader])traders[p.trader]=[];traders[p.trader].push(p);});
+  let html='';
+  for(const[trader,items] of Object.entries(traders)){
+    html+=`<div class="trader-section"><div class="trader-title">${trader} <small style="font-weight:400;color:var(--gray)">(${items.length}개)</small></div><div class="product-grid">`;
+    items.forEach(p=>{
+      const imgs=getImgs(p);
+      const thumb=imgs.length>0
+        ?`<img src="${driveImg(imgs[0])}" alt="${p.id}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        :'';
+      const noImg=`<div class="no-img" style="${imgs.length>0?'display:none':''}"><svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>`;
+      html+=`<div class="product-card" onclick="showDetail(${p.no})">
+        <div class="card-thumb">${thumb}${noImg}</div>
+        <div class="card-body">
+          <div class="card-id">No.${p.no}</div>
+          <div class="card-name">${p.id}</div>
+          <div class="card-color">${p.color||'—'}</div>
+          <div class="card-price">₩${p.price}</div>
+          <div class="card-cat">${p.cat}</div>
+        </div>
+      </div>`;
+    });
+    html+='</div></div>';
+  }
+  document.getElementById('index-content').innerHTML=html;
+}
+
+let curIdx=0;
+function showDetail(no){
+  const idx=products.findIndex(p=>p.no===no);
+  if(idx<0)return;
+  curIdx=idx;
+  const p=products[idx];
+  let el=document.getElementById(`det-${no}`);
+  if(!el){el=buildDetail(p,idx);document.getElementById('detail-pages').appendChild(el);}
+  document.getElementById('index-page').style.display='none';
+  document.querySelectorAll('.detail-page').forEach(e=>e.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo(0,0);
+}
+function goBack(){
+  document.getElementById('index-page').style.display='';
+  document.querySelectorAll('.detail-page').forEach(e=>e.classList.remove('active'));
+  window.scrollTo(0,0);
+}
+function navProd(dir){
+  const ni=curIdx+dir;
+  if(ni>=0&&ni<products.length)showDetail(products[ni].no);
+}
+function switchImg(no,fileId,el){
+  const main=document.querySelector(`#det-${no} .gallery-main img`);
+  if(main)main.src=driveImg(fileId);
+  document.querySelectorAll(`#det-${no} .gallery-thumbs img`).forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');
+}
+
+function buildDetail(p,idx){
+  const imgs=getImgs(p);
+  const hasSize=p.s.c!=='';
+  const hasModel=p.model.h!=='';
+
+  let galleryHtml='';
+  if(imgs.length>0){
+    galleryHtml=`
+      <div class="gallery-main"><img src="${driveImg(imgs[0])}" alt="${p.id}" id="main-${p.no}"></div>
+      <div class="gallery-thumbs">
+        ${imgs.slice(0,8).map((id,i)=>`<img src="${driveImg(id)}" class="${i===0?'active':''}" onclick="switchImg(${p.no},'${id}',this)" loading="lazy">`).join('')}
+      </div>
+      <a href="${driveFolderUrl(p.folderId)}" target="_blank" class="gdrive-link">📁 전체 사진 보기 (${imgs.length}장+)</a>`;
+  } else {
+    galleryHtml=`
+      <div class="gallery-main"><div class="placeholder"><svg width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div></div>
+      <a href="${driveFolderUrl(p.folderId)}" target="_blank" class="gdrive-link">📁 Google Drive에서 사진 보기</a>`;
+  }
+
+  const szR=hasSize?`<tr><td>S (55)</td><td>${vv(p.s.c)}</td><td>${vv(p.s.w)}</td><td>${vv(p.s.h)}</td><td>${vv(p.s.l)}</td></tr><tr><td>M (66)</td><td>${vv(p.m.c)}</td><td>${vv(p.m.w)}</td><td>${vv(p.m.h)}</td><td>${vv(p.m.l)}</td></tr><tr><td>L (77)</td><td>${vv(p.l.c)}</td><td>${vv(p.l.w)}</td><td>${vv(p.l.h)}</td><td>${vv(p.l.l)}</td></tr>`:`<tr><td colspan="5" style="color:var(--gray);padding:18px;text-align:center">사이즈 정보 미입력</td></tr>`;
+
+  const modelH=hasModel?`<div class="section"><div class="sec-title">모델 착용 정보</div><div class="model-bar"><div class="ms"><div class="ms-lbl">키</div><div class="ms-val">${p.model.h}cm</div></div><div class="ms"><div class="ms-lbl">체중</div><div class="ms-val">${p.model.w}kg</div></div>${p.model.c?`<div class="ms"><div class="ms-lbl">가슴</div><div class="ms-val">${p.model.c}cm</div></div>`:''} ${p.model.wa?`<div class="ms"><div class="ms-lbl">허리</div><div class="ms-val">${p.model.wa}</div></div>`:''} ${p.model.sz?`<div class="ms"><div class="ms-lbl">착용 사이즈</div><div class="ms-val">${p.model.sz}</div></div>`:''}</div></div>`:'' ;
+  const wearH=(p.stretch||p.inner||p.see||p.thick||p.zipper)?`<div class="section"><div class="sec-title">착용 특성</div><div class="wear-grid"><div class="wear-item"><span class="wi-lbl">신축성</span>${badge(p.stretch,'s')}</div><div class="wear-item"><span class="wi-lbl">안감</span>${badge(p.inner)}</div><div class="wear-item"><span class="wi-lbl">비침</span>${badge(p.see)}</div><div class="wear-item"><span class="wi-lbl">두께감</span><span class="badge b-no">${vv(p.thick)}</span></div><div class="wear-item"><span class="wi-lbl">지퍼</span><span class="badge b-no">${vv(p.zipper)}</span></div></div></div>`:'';
+
+  const div=document.createElement('div');
+  div.className='detail-page';
+  div.id=`det-${p.no}`;
+  div.innerHTML=`
+    <div class="top-bar"><span class="back-btn" onclick="goBack()">← 목록으로</span><span class="breadcrumb">${p.trader} · ${p.id} · No.${p.no}</span></div>
+    <div class="detail-wrap">
+      <div class="detail-top">
+        <div class="gallery">${galleryHtml}</div>
+        <div class="detail-info">
+          <div class="d-trader">${p.trader}</div>
+          <div class="d-name">${p.desc||p.id}</div>
+          <div class="d-id">${p.id}</div>
+          ${p.color?`<div class="color-badge"><span class="cdot" style="background:${colorCSS(p.color)}"></span>${p.color}</div>`:''}
+          <div class="d-price">₩${p.price}</div>
+          ${p.desc?`<div class="d-desc">${p.desc}</div>`:''}
+        </div>
+      </div>
+      <div class="section"><div class="sec-title">소재 정보</div><div class="mat-grid"><div class="mat-card"><div class="mat-label">겉감</div><div class="mat-value">${vv(p.fabric)}</div></div><div class="mat-card"><div class="mat-label">안감</div><div class="mat-value">${vv(p.lining)}</div></div><div class="mat-card"><div class="mat-label">세탁방법</div><div class="mat-value">${vv(p.wash)}</div></div></div></div>
+      <div class="section"><div class="sec-title">사이즈 가이드 (실측, cm)</div><table class="size-table"><thead><tr><th>사이즈</th><th>가슴</th><th>허리</th><th>엉덩이</th><th>기장</th></tr></thead><tbody>${szR}</tbody></table></div>
+      ${wearH}${modelH}
+      <div class="section"><div class="sec-title">세탁 및 주의사항</div><div class="notice-box"><p>${p.wash}</p><p>세탁 시 단독 세탁을 권장합니다</p><p>직사광선을 피해 건조하세요</p><p>색상은 모니터 환경에 따라 실제와 다소 차이가 있을 수 있습니다</p><p>상품 특성상 1~3cm 오차가 있을 수 있습니다</p></div></div>
+      <div class="det-nav"><button class="nav-btn${idx===0?' disabled':''}" onclick="navProd(-1)">← 이전 ${idx>0?`<small style="color:var(--gray)">${products[idx-1].id}</small>`:''}</button><button class="nav-btn${idx===products.length-1?' disabled':''}" onclick="navProd(1)">${idx<products.length-1?`<small style="color:var(--gray)">${products[idx+1].id}</small>`:''} 다음 →</button></div>
+    </div>`;
+  return div;
+}
+
+renderIndex();
+</script>
+</body>
+</html>
