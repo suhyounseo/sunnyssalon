@@ -255,9 +255,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--blac
 // ══════════════════════════════════════
 // 드라이브 이미지 URL (thumbnail 방식 - 공유설정 불필요)
 // ══════════════════════════════════════
-function driveThumb(folderId, sz){
-  // 폴더 자체를 썸네일로 보여주는 방식
-  return `https://drive.google.com/thumbnail?id=${folderId}&sz=w${sz||400}`;
+function driveImg(fileId){
+  return `https://drive.google.com/uc?export=view&id=${fileId}`;
 }
 function driveFolderUrl(id){
   return `https://drive.google.com/drive/folders/${id}`;
@@ -826,11 +825,12 @@ function renderIndex(filter) {
       <div class="grid">`;
     items.forEach(p => {
       const ready = !!p.price;
-      const imgUrl = `https://drive.google.com/thumbnail?id=${p.fid}&sz=w400`;
+      const imgFileId = IMG[p.fid];
+      const imgUrl = imgFileId ? driveImg(imgFileId) : null;
       html += `<div class="card" onclick="openDetail(${p.no})">
         <div class="card-img">
-          <img src="${imgUrl}" alt="${p.id}" loading="lazy"
-            onerror="this.parentElement.innerHTML='<div class=no-img><svg width=28 height=28 fill=none viewBox=&quot;0 0 24 24&quot; stroke=currentColor opacity=.3><path stroke-linecap=round stroke-linejoin=round stroke-width=1.5 d=&quot;M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z&quot;/></svg></div>'">
+          ${imgUrl ? `<img src="${imgUrl}" alt="${p.id}" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.no-img').style.display='flex'">` : ''}
+          <div class="no-img" style="${imgUrl?'display:none':''}"><svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" opacity=".3"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
           <div class="badge-wrap">
             ${ready?`<span class="badge-ready">₩${p.price}</span>`:`<span class="badge-prep">준비중</span>`}
           </div>
@@ -899,14 +899,11 @@ function buildDetail(p){
   const panel = document.getElementById('detail-panel');
   const hasSz = p.s.c !== '';
   const hasModel = p.mh !== '';
-  const imgUrl = `https://drive.google.com/thumbnail?id=${p.fid}&sz=w800`;
+  const imgFileId = IMG[p.fid];
+  const imgUrl = imgFileId ? driveImg(imgFileId) : null;
 
-  // 썸네일 여러장 (같은 폴더에서 다양한 사이즈로 요청)
-  const thumbSizes = [800,400,600,300,500,350,250];
-  const thumbs = thumbSizes.slice(0,6).map((sz,i)=>{
-    const url=`https://drive.google.com/thumbnail?id=${p.fid}&sz=w${sz}`;
-    return `<img src="${url}" class="${i===0?'on':''}" onclick="switchImg('${url}',this)" loading="lazy" onerror="this.style.display='none'">`;
-  }).join('');
+  // 썸네일: 파일ID 있으면 실제 이미지, 없으면 폴더 링크만
+  const thumbs = imgUrl ? `<img src="${imgUrl}" class="on" onclick="switchImg('${imgUrl}',this)" loading="lazy">` : '';
 
   const sizeRows = hasSz ? `
     <tr><td>S (55)</td><td>${vv(p.s.c)}</td><td>${vv(p.s.w)}</td><td>${vv(p.s.h)}</td><td>${vv(p.s.l)}</td></tr>
@@ -923,7 +920,9 @@ function buildDetail(p){
       <div class="det-top">
         <div class="gallery">
           <div class="gallery-main">
-            <img src="${imgUrl}" alt="${p.id}" onerror="this.parentElement.innerHTML='<div class=no-img-big><svg width=52 height=52 fill=none viewBox=&quot;0 0 24 24&quot; stroke=currentColor><path stroke-linecap=round stroke-linejoin=round stroke-width=1 d=&quot;M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z&quot;/></svg></div>'">
+            ${imgUrl
+              ? `<img src="${imgUrl}" alt="${p.id}" onerror="this.parentElement.innerHTML='<div class=no-img-big><svg width=52 height=52 fill=none viewBox=&quot;0 0 24 24&quot; stroke=currentColor><path stroke-linecap=round stroke-linejoin=round stroke-width=1 d=&quot;M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z&quot;/></svg></div>'">`
+              : `<div class="no-img-big"><svg width="52" height="52" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>`}
           </div>
           <div class="gallery-thumbs">${thumbs}</div>
           <a href="${driveFolderUrl(p.fid)}" target="_blank" class="gdrive-btn">
